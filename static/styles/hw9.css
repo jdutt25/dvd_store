@@ -1,0 +1,30 @@
+/* Jessica Dutton, OSU CS 493, Homework 9 */
+
+body {
+    background-color: #1030ad;
+    opacity: 0.9;
+    font-family: 'Georgia';
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    color: #FFCC00;
+}
+
+
+h1 {
+    font: 'Lobster Two', Helvetica, sans-serif;
+    text-align: center;
+    
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+}
+
+div {
+    text-align: justify;
+}
