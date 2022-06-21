@@ -1,0 +1,3731 @@
+{
+	"info": {
+		"_postman_id": "49c7cb52-4764-4ce3-8b7b-1b1c2cd747a4",
+		"name": "hw9",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Sing\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(108);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Musical\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Sing\",\r\n  \"genre\": \"Musical\",\r\n\"length\": 108\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST DVD with missing required attribute",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorizaiton",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing 2\",\r\n  \"genre\": \"Musical\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST DVD with JWT2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd2_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Zoolander\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(90);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Comedy\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt2}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Zoolander\",\r\n  \"genre\": \"Comedy\",\r\n    \"length\": 90\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST 2nd DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd3_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"A Bug's Life\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(95);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Cartoon\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"A Bug's Life\",\r\n  \"genre\": \"Cartoon\",\r\n    \"length\": 95\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST3rd  DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd4_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Monsters Inc\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(96);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Cartoon\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Monsters Inc\",\r\n  \"genre\": \"Cartoon\",\r\n    \"length\": 96\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST 4th DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd5_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Runaway Bride\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(116);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Romantic Comedy\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Runaway Bride\",\r\n  \"genre\": \"Romantic Comedy\",\r\n    \"length\": 116\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST 5th DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd6_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Pretty Woman\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(119);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Romantic Comedy\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Pretty Woman\",\r\n  \"genre\": \"Romantic Comedy\",\r\n    \"length\": 119\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST 6th DVD with JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"dvd7_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Psycho\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(109);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Horror\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Psycho\",\r\n  \"genre\": \"Horror\",\r\n    \"length\": 109\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST DVD without JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "123456",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Psycho\",\r\n  \"genre\": \"Horror\",\r\n    \"length\": 109\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST DVD invalid JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorizaiton",
+						"value": "12345",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/csv",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Psycho\",\r\n  \"genre\": \"Horror\",\r\n    \"length\": 109\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST DVD with non-JSON Accept Header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorizaiton",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Psycho\",\r\n  \"genre\": \"Horror\",\r\n    \"length\": 109\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVDs JWT1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVDs JWT2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{jwt2}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVDs no JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVDs invalid JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT request to /dvds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"405 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Cannot apply PUT to all DVDs\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing 2\",\r\n  \"genre\": \"Musical\",\r\n   \"length\": 110,\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE request to /dvds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"pm.test(\"405 error message\", function () {",
+							"     pm.expect(pm.response.json()[\"Error\"]).to.eq(\"Cannot apply DELETE to all DVDs\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/dvds",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Sing\");\r",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(108);\r",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Musical\");\r",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVD not authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status((401));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "123456",
+						"type": "default"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVD invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {\r",
+							"    pm.response.to.have.status((404));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt2}}",
+						"type": "default"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/123",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVD non-JSON accept header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {\r",
+							"    pm.response.to.have.status((406));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "accept",
+						"value": "text/html",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update DVD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    //Check if the content is valid",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Sing\");",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(108);",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Musical Cartoon\");",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);",
+							"",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing\",\r\n  \"genre\": \"Musical Cartoon\",\r\n   \"length\": 108,\r\n   \"renter\": null\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update DVD not authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "12345",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing\",\r\n  \"genre\": \"Musical Cartoon\",\r\n   \"length\": 108,\r\n   \"renter\": null\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update DVD missing attribute",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing\",\r\n  \"genre\": \"Musical Cartoon\",\r\n   \"length\": 108\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update DVD doesn't exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sing\",\r\n  \"genre\": \"Musical Cartoon\",\r\n   \"length\": 108,\r\n   \"renter\": null\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/123654",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"123654"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit DVD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    //Check if the content is valid",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"A Bug's Life\");",
+							"    pm.expect(pm.response.json()[\"length\"]).to.eq(95);",
+							"    pm.expect(pm.response.json()[\"genre\"]).to.eq(\"Disney Cartoon\");",
+							"    pm.expect(pm.response.json()[\"renter\"]).to.eq(null);",
+							"",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"genre\": \"Disney Cartoon\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit DVD doesn't exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"genre\": \"Disney Cartoon\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/2134",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"2134"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit DVD not authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "12345",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"genre\": \"Disney Cartoon\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit DVD 0 attributes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit DVD non-JSON accept header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"genre\": \"Cartoon\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer1_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Mickey Mouse\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(0);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"February\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Mickey Mouse\",\r\n\"member\": 0,\r\n\"birth_month\": \"February\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer2_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Alex Hamilton\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(1);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"August\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Alex Hamilton\",\r\n\"member\": 1,\r\n\"birth_month\": \"August\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer3_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Elvis Presley\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(0);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"March\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Elvis Presley\",\r\n\"member\": 0,\r\n\"birth_month\": \"March\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer4_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Ryan Smith\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(0);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"July\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Ryan Smith\",\r\n\"member\": 0,\r\n\"birth_month\": \"July\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer5_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Tess Johnson\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(1);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"February\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Tess Johnson\",\r\n\"member\": 1,\r\n\"birth_month\": \"February\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"customer6_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Whitney Devlin\");\r",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(0);\r",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"June\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Whitney Devlin\",\r\n\"member\": 0,\r\n\"birth_month\": \"June\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer non-JSON accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/xhtml+xml",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Sammy Peters\",\r\n\"member\": 0,\r\n\"birth_month\": \"July\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Customer 6 missing attribute",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Sammy Peters\",\r\n\"member\": 0\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer invalid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/587",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"587"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer non-JSON accept header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "text/html",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"content is valid\", function () {",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"Elvis Presley\");",
+							"    pm.expect(pm.response.json()[\"member\"]).to.eq(1);",
+							"    pm.expect(pm.response.json()[\"birth_month\"]).to.eq(\"March\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"member\" : 1\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer 0 attributes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer rent DVD (not allowed)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rentals\" : {{dvd2_id}}\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit Customer non-JSON accept",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/html",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "text/htlm",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Elvis Updated\"\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent DVD1 to Customer1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Mickey Mouse\",\r\n\"member\": 1,\r\n\"birth_month\": \"February\",\r\n\"rentals\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}",
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent invalid DVD to Customer1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}/dvds/123654",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}",
+						"dvds",
+						"123654"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent DVD to invalid Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/12345/dvds/{{dvd3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"12345",
+						"dvds",
+						"{{dvd3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Mickey Mouse\",\r\n\"member\": 1,\r\n\"birth_month\": \"February\",\r\n\"rentals\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer4_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer4_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Customer return DVD (not allowed)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Mickey Mouse\",\r\n\"member\": 1,\r\n\"birth_month\": \"February\",\r\n\"rentals\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Customer rent DVD (not allowed) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Mickey Mouse\",\r\n\"member\": 1,\r\n\"birth_month\": \"February\",\r\n\"rentals\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "return DVD1 from Customer1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}",
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Store Managers (users)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/store_managers",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"store_managers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DVD 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD not authorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 no content\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "12345",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD doesn't exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 no content\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/123456",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt2}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd4_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd4_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd5_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd5_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd6_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd6_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete DVD 7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/dvds/{{dvd7_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"dvds",
+						"{{dvd7_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer3_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer3_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer4_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer4_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer5_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer5_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer 6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 no content\", function () {",
+							"    //Check for appropriate 204 status code",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{jwt1}}",
+						"type": "default"
+					},
+					{
+						"key": "content-type",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/customers/{{customer6_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"customers",
+						"{{customer6_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
